@@ -569,8 +569,13 @@ h2:has(.wz){line-height:1.22;padding-top:.28em}
 @keyframes coreGlow{from{opacity:.85}to{opacity:1;filter:brightness(1.25)}}
 .fw-halo{transform-box:fill-box;transform-origin:center;animation:halo2 2.2s ease-in-out infinite alternate}
 @keyframes halo2{from{opacity:.75;transform:scale(.95)}to{opacity:1;transform:scale(1.06)}}
-@media (max-width:600px){.nlab.fire{font-size:14px;transform:translate(10px,20px)}}
+.fwlab{transform-box:fill-box;transform-origin:center}
+@media (max-width:600px){.fwlab{transform:scale(1.22)}}
 @media (prefers-reduced-motion:reduce){.fl,.fw-core,.fw-halo{animation:none}}
+/* alignment pass */
+.net .net-head{justify-content:center}
+.contact .eyebrow{color:var(--lime)!important}
+.hero-tags,.paths-key{align-items:center}
 /* contact */
 .contact{background:radial-gradient(800px 400px at 0% 100%,rgba(215,242,5,.12),transparent 60%),var(--navy);color:#f3f6ff;--bg:#f3f6ff;--ink:var(--navy);border-top:1px solid rgba(215,242,5,.3)}
 .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}

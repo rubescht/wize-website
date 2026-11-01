@@ -569,8 +569,13 @@ h2:has(.wz){line-height:1.22;padding-top:.28em}
 @keyframes coreGlow{from{opacity:.85}to{opacity:1;filter:brightness(1.25)}}
 .fw-halo{transform-box:fill-box;transform-origin:center;animation:halo2 2.2s ease-in-out infinite alternate}
 @keyframes halo2{from{opacity:.75;transform:scale(.95)}to{opacity:1;transform:scale(1.06)}}
-@media (max-width:600px){.nlab.fire{font-size:14px;transform:translate(10px,20px)}}
+.fwlab{transform-box:fill-box;transform-origin:center}
+@media (max-width:600px){.fwlab{transform:scale(1.22)}}
 @media (prefers-reduced-motion:reduce){.fl,.fw-core,.fw-halo{animation:none}}
+/* alignment pass */
+.net .net-head{justify-content:center}
+.contact .eyebrow{color:var(--lime)!important}
+.hero-tags,.paths-key{align-items:center}
 /* contact */
 .contact{background:radial-gradient(800px 400px at 0% 100%,rgba(215,242,5,.12),transparent 60%),var(--navy);color:#f3f6ff;--bg:#f3f6ff;--ink:var(--navy);border-top:1px solid rgba(215,242,5,.3)}
 .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -718,7 +723,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
             <path class="fl f6" d="M11 -14 C10 -19 13 -21 15 -26 C16 -21 18 -19 17 -14 Z" fill="url(#flameInner)"/>
           </g>
         </g>
-        <text class="nlab fire" x="150" y="240" text-anchor="middle">Wize Firewall</text>
+        <g transform="translate(150 153)"><g class="fwlab">
+          <rect x="-52" y="-11" width="104" height="22" rx="11" fill="rgba(5,13,38,.92)" stroke="rgba(255,160,60,.6)"/>
+          <text class="nlab fire" y="4" text-anchor="middle">Wize Firewall</text>
+        </g></g>
         <!-- cloud tile -->
         <g transform="translate(530 190)">
           <rect x="-34" y="-34" width="68" height="68" rx="18" fill="url(#tile)" stroke="rgba(255,255,255,.16)"/>
@@ -1291,7 +1299,7 @@ function refresh(changed){
   Object.keys(paths).forEach(k=>{
     const pt=paths[k].getPointAtLength(paths[k].getTotalLength()*at[k]);
     const label=up[k]?`${names[k]} · ${Math.round(100*weight[k]/tot)}%`:`${names[k]} · down`;
-    const sc=(document.getElementById('netSvg').clientWidth||600)<520?1.45:1;
+    const sc=matchMedia('(max-width:600px)').matches?1.45:1;
     const w=(label.length*6.6+22)*sc, c=up[k]?colors[k]:'var(--down)';
     pg.insertAdjacentHTML('beforeend',`<g transform="translate(${pt.x} ${pt.y})"><rect x="${-w/2}" y="${-12*sc}" width="${w}" height="${24*sc}" rx="${12*sc}" fill="rgba(5,13,38,.88)" stroke="${c}" stroke-opacity=".7" stroke-width="1"/><text y="${4*sc}" text-anchor="middle" style="font:700 ${11*sc}px var(--f-mono);fill:${c}">${label}</text></g>`);
   });
@@ -1487,10 +1495,10 @@ load(0);
 
 /* ---------- SUPPORT LANES ---------- */
 (function(){
-  const box=(x,y,w,t1,t2,stroke,fill)=>`<g><rect x="${x}" y="${y}" width="${w}" height="64" rx="12" fill="${fill||'var(--sunk)'}" stroke="${stroke||'var(--line)'}" stroke-width="${stroke?2:1}"/><text x="${x+w/2}" y="${y+28}" text-anchor="middle" style="font:700 13px var(--f-display);fill:var(--ink)">${t1}</text><text x="${x+w/2}" y="${y+46}" text-anchor="middle" class="svg-t" style="font-size:11px">${t2}</text></g>`;
+  const box=(x,y,w,t1,t2,stroke,fill)=>`<g><rect x="${x}" y="${y}" width="${w}" height="64" rx="12" fill="${fill||'var(--sunk)'}" stroke="${stroke||'var(--line)'}" stroke-width="${stroke?2:1}"/><text x="${x+w/2}" y="${y+28}" text-anchor="middle" style="font:700 12.5px var(--f-display);fill:var(--ink)">${t1}</text><text x="${x+w/2}" y="${y+46}" text-anchor="middle" class="svg-t" style="font-size:11px">${t2}</text></g>`;
   const arr=(x1,x2,y)=>`<path d="M${x1} ${y} H${x2}" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#ar2)"/>`;
-  const comp=[['You','spot a fault'],['Support hotline','general queue'],['Menu & hold','queue'],['Level 1 agent','reads a script'],['Fault ticket','escalated'],['Network owner','their queue'],['Tech booked','days later']];
-  let h='',w=96,g=18,y=40;
+  const comp=[['You','spot a fault'],['Support line','general queue'],['Menu & hold','queue'],['Level 1 agent','reads a script'],['Fault ticket','escalated'],['Network owner','their queue'],['Tech booked','days later']];
+  let h='',w=103,g=10.5,y=40;
   comp.forEach((c,i)=>{const x=i*(w+g);h+=box(x,y,w,c[0],c[1],i===comp.length-1?'var(--down)':null);if(i<comp.length-1)h+=arr(x+w+2,x+w+g-2,y+32);});
   document.getElementById('laneComp').innerHTML=h;
   const wz=[['You','spot a fault',null],['Your engineer','direct mobile','var(--radio)'],['Fixed','on our own network','var(--ok)']];
