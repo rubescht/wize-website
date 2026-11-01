@@ -127,8 +127,8 @@ header.top .nav ul a{color:#b9c4e4}header.top .nav ul a:hover{color:#fff}
 .player{background:#040a1e;box-shadow:0 30px 80px -30px rgba(0,0,0,.9);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;color:#e9eef7;min-width:0}
 .stage{aspect-ratio:16/9;max-width:100%;position:relative}
 .stage svg{position:absolute;inset:0;width:100%;height:100%}
-.caption{position:absolute;left:0;right:0;bottom:46px;padding:18px 22px 16px;background:linear-gradient(transparent,rgba(5,8,15,.92) 45%);font:500 clamp(14px,1.8vw,19px)/1.45 var(--f-body);text-wrap:balance}
-.big-play{position:absolute;inset:0 0 46px 0;display:grid;place-items:center;background:rgba(5,8,15,.35);border:0;cursor:pointer;color:#fff}
+.caption{position:static;min-height:4.6em;padding:14px 20px;background:#081433;border-top:1px solid var(--line);font:500 clamp(14px,1.8vw,19px)/1.45 var(--f-body);text-wrap:balance}
+.big-play{position:absolute;left:0;right:0;top:0;aspect-ratio:16/9;display:grid;place-items:center;background:rgba(5,8,15,.35);border:0;cursor:pointer;color:#fff}
 .big-play span{width:84px;height:84px;border-radius:50%;background:var(--lime);color:var(--on-accent);display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.4)}
 .controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#081433;font:500 13px var(--f-mono)}
 .controls button{background:none;border:0;color:#e9eef7;cursor:pointer;padding:4px;display:grid;place-items:center}
@@ -136,7 +136,7 @@ header.top .nav ul a{color:#b9c4e4}header.top .nav ul a:hover{color:#fff}
 .bar i{flex:1;background:#22304a;position:relative;border-radius:2px;overflow:hidden}
 .bar i b{position:absolute;inset:0;width:0;background:var(--lime)}
 .vlist{display:grid;gap:10px}
-.vitem{display:grid;grid-template-columns:96px 1fr;gap:12px;text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;color:var(--ink);font:inherit;align-items:center}
+.vitem{display:grid;grid-template-columns:112px 1fr;gap:12px;text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;color:var(--ink);font:inherit;align-items:center}
 .vitem[aria-current="true"]{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime)}
 .vthumb{aspect-ratio:16/10;border-radius:9px;background:#0b111f;display:grid;place-items:center;overflow:hidden}
 .vitem strong{display:block;font:700 15px/1.25 var(--f-display)}
@@ -383,8 +383,6 @@ header.top:not(.scrolled) .logo .wlogo{opacity:0;transform:translateY(-6px);poin
 }
 
 @media (max-width:720px){
-  .caption{position:static;background:#081433;border-top:1px solid var(--line)}
-  .big-play{inset:0 0 auto 0;aspect-ratio:16/9;height:auto}
   .nbn-row{grid-template-columns:18px 1fr}
   .nbn-row em{grid-column:2;text-align:left}
   .cmp-wrap{overflow:visible;border:0;background:none}
@@ -398,8 +396,67 @@ header.top:not(.scrolled) .logo .wlogo{opacity:0;transform:translateY(-6px);poin
   table.cmp2 td[data-label]::before{content:attr(data-label);display:block;font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;color:var(--muted)}
   table.cmp2 td.us[data-label]::before{color:var(--lime)}
 }
-@media (max-width:420px){.strip strong{font-size:26px}.strip div.c{padding:16px 12px}.hm-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.strip strong{font-size:26px}.strip div.c{padding:16px 12px}}
 
+
+/* review fixes */
+.chart-card .chart-wrap svg{max-width:900px}
+.finder{align-items:start}
+.voice-grid{align-items:stretch}
+.cflow{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;position:relative}
+.cf-step{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(5,13,38,.55);border:1px solid var(--line)}
+.cf-step strong{display:block;font:700 16px/1.3 var(--f-display)}
+.cf-step span:not(.cf-n):not(.cf-wave){font-size:14px;color:var(--muted)}
+.cf-n{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--f-mono);background:var(--surface-2);color:var(--ink)}
+.cf-ai{border-color:rgba(255,125,94,.55);background:linear-gradient(90deg,rgba(255,125,94,.12),rgba(5,13,38,.55))}
+.cf-ai .cf-n{background:var(--voice);color:var(--on-accent)}
+.cf-end{border-color:rgba(215,242,5,.5);background:linear-gradient(90deg,rgba(215,242,5,.12),rgba(5,13,38,.55))}
+.cf-end .cf-n{background:var(--lime);color:var(--on-accent)}
+.cf-wave{display:flex;gap:3px;align-items:center;height:22px}
+.cf-wave i{width:3px;height:100%;border-radius:2px;background:var(--voice);transform-origin:center;animation:wave .9s ease-in-out infinite}
+.cf-wave i:nth-child(2){animation-delay:.12s}.cf-wave i:nth-child(3){animation-delay:.24s}.cf-wave i:nth-child(4){animation-delay:.36s}.cf-wave i:nth-child(5){animation-delay:.48s}
+.cf-branch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-left:24px;border-left:2px dashed var(--line);margin-left:16px}
+.cf-branch div{padding:11px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--c);display:grid;gap:2px;min-width:0}
+.cf-branch strong{font:700 15px var(--f-display)}
+.cf-branch span{font-size:13px;color:var(--muted)}
+.cf-urgent{margin-left:16px;padding:8px 12px 8px 24px;border-left:2px dashed var(--line);font-size:14px;color:var(--muted)}
+.cf-urgent b{color:var(--down);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.call{grid-template-rows:auto 1fr auto auto}
+.transcript{min-height:0}
+.call-note{margin-top:-4px}
+.ichain{display:flex;align-items:center;gap:0;flex-wrap:nowrap;margin:18px 0 6px}
+.inode{flex:none;padding:12px 14px;border-radius:12px;background:var(--sunk);border:1px solid var(--line);font:600 14px var(--f-body);text-align:center;line-height:1.25}
+.inode.big{flex:1;border:2px solid var(--lime);background:rgba(215,242,5,.08);display:grid;gap:2px}
+.inode.big strong{font:700 16px var(--f-display)}
+.inode.big em{font:500 12px var(--f-mono);font-style:normal;color:var(--muted)}
+.ilink{flex:1;min-width:18px;height:2px;background:var(--muted);position:relative;display:grid;place-items:center}
+.ilink.good{background:var(--fibre);height:4px;max-width:60px}
+.ilink.bad{background:repeating-linear-gradient(90deg,var(--down) 0 5px,transparent 5px 10px)}
+.ilink b{font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg2);border:2px solid var(--down);filter:grayscale(.2)}
+.icap{font:500 13px var(--f-mono);color:var(--muted);text-align:center}
+.ipanel{padding:18px;gap:4px}
+.vthumb svg{display:block;width:100%;height:100%}
+@media (max-width:960px){.cf-branch{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .cf-step{grid-template-columns:32px 1fr}.cf-wave{display:none}
+  .ichain{flex-wrap:wrap;row-gap:8px}
+  .inode{font-size:13px;padding:10px 11px}
+  .hm-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:420px){.hm-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:359px){.hm-grid{grid-template-columns:1fr}}
+
+.flowcard{display:grid;grid-template-rows:auto 1fr}
+.flowcard .cflow{align-content:center}
+.ilink.bad{min-width:40px}
+@media (max-width:720px){
+  .ichain{flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+  .ichain .inode{flex:none}
+  .ilink,.ilink.good,.ilink.bad{flex:none;width:2px;min-width:0;max-width:none;height:22px;align-self:center}
+  .ilink.good{width:4px}
+  .ilink.bad{height:40px;background:repeating-linear-gradient(180deg,var(--down) 0 5px,transparent 5px 10px)}
+}
+.ipanel .chip{white-space:normal;line-height:1.4}
 /* contact */
 .contact{background:radial-gradient(800px 400px at 0% 100%,rgba(215,242,5,.12),transparent 60%),var(--navy);color:#f3f6ff;--bg:#f3f6ff;--ink:var(--navy);border-top:1px solid rgba(215,242,5,.3)}
 .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -449,7 +506,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="hero-brand"><span class="wlogo hero-logo" data-wlogo data-clone role="img" aria-label="Wize Solutions"></span></div>
-      <div class="eyebrow"><i></i>Business internet &amp; AI voice · A Code Black Group company</div>
+      <div class="eyebrow"><i></i>Business internet &amp; AI voice</div>
       <h1>One network. <span class="s">Every path.</span></h1>
       <p class="lede">Wize blends business fibre, 5G and Starlink into one managed connection, then runs your phones on it with an AI receptionist that answers every call. When one path drops, your business doesn't.</p>
       <div class="paths-key" aria-label="Paths Wize combines">
@@ -506,8 +563,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         <!-- cloud -->
         <g transform="translate(462 180)">
           <path d="M-30 14 a16 16 0 0 1 2 -32 a20 20 0 0 1 38 -4 a14 14 0 0 1 18 22 a12 12 0 0 1 -8 14 z" fill="var(--sunk)" stroke="var(--ink)" stroke-width="2"/>
-          <text class="svg-tb" y="44" text-anchor="middle">Cloud &amp; calls</text>
-          <text class="svg-t" y="60" text-anchor="middle">M365 · POS · Voice</text>
+          <text class="svg-tb" x="40" y="44" text-anchor="end">Cloud &amp; calls</text>
+          <text class="svg-t" x="40" y="60" text-anchor="end">M365 · POS · voice</text>
         </g>
         <g id="xmarks"></g>
       </svg>
@@ -669,50 +726,26 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
     </div>
     <div class="voice-grid">
       <div class="flowcard">
-        <div class="net-head" style="margin-bottom:8px"><h3>What happens when someone calls</h3><span class="chip">CALL FLOW</span></div>
-        <span class="swipe">Swipe to see the full diagram →</span>
-        <div class="chart-wrap">
-        <svg viewBox="0 0 640 380" role="img" aria-label="Call flow: caller reaches the Wize AI receptionist, which understands intent and books, transfers or takes a message, then logs a summary to your CRM and Teams">
-          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--muted)"/></marker></defs>
-          <g fill="none" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#ar)">
-            <path d="M112 70 H178"/>
-            <path d="M320 70 H382"/>
-            <path d="M470 100 C470 130 120 120 100 168"/>
-            <path d="M470 100 V168"/>
-            <path d="M470 100 C470 130 300 130 290 168"/>
-            <path d="M100 222 C100 262 300 262 312 292"/>
-            <path d="M290 222 V290"/>
-            <path d="M470 222 C470 262 340 262 330 292"/>
-          </g>
-          <g>
-            <rect x="12" y="44" width="100" height="52" rx="12" fill="var(--sunk)" stroke="var(--line)"/>
-            <text class="svg-tb" x="62" y="68" text-anchor="middle">Caller</text><text class="svg-t" x="62" y="85" text-anchor="middle">24/7</text>
-            <rect x="180" y="38" width="140" height="64" rx="14" fill="color-mix(in srgb,var(--voice) 14%,var(--surface))" stroke="var(--voice)" stroke-width="2"/>
-            <text class="svg-tb" x="250" y="64" text-anchor="middle">Wize AI agent</text><text class="svg-t" x="250" y="82" text-anchor="middle">answers in &lt;1 ring</text>
-            <g class="wv-g"><rect class="wv" x="218" y="88" width="3" height="8" fill="var(--voice)"/></g>
-            <path d="M470 34 L520 70 L470 106 L420 70 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
-            <text class="svg-tb" x="470" y="66" text-anchor="middle" style="font-size:13px">Intent?</text><text class="svg-t" x="470" y="82" text-anchor="middle">+ caller ID</text>
-            <rect x="30" y="170" width="140" height="52" rx="12" fill="var(--surface)" stroke="var(--orbit)" stroke-width="2"/>
-            <text class="svg-tb" x="100" y="193" text-anchor="middle">Book it</text><text class="svg-t" x="100" y="210" text-anchor="middle">into your calendar</text>
-            <rect x="220" y="170" width="140" height="52" rx="12" fill="var(--surface)" stroke="var(--radio)" stroke-width="2"/>
-            <text class="svg-tb" x="290" y="193" text-anchor="middle">Transfer</text><text class="svg-t" x="290" y="210" text-anchor="middle">by name or team</text>
-            <rect x="400" y="170" width="140" height="52" rx="12" fill="var(--surface)" stroke="var(--fibre)" stroke-width="2"/>
-            <text class="svg-tb" x="470" y="193" text-anchor="middle">Take a message</text><text class="svg-t" x="470" y="210" text-anchor="middle">SMS + email follow-up</text>
-            <rect x="200" y="292" width="240" height="62" rx="14" fill="var(--lime)"/>
-            <text x="320" y="318" text-anchor="middle" style="font:700 15px var(--f-display);fill:var(--on-accent)">Summary &amp; transcript</text>
-            <text x="320" y="337" text-anchor="middle" style="font:12px var(--f-mono);fill:var(--on-accent);opacity:.8">→ CRM · Teams · inbox</text>
-            <rect x="560" y="120" width="72" height="44" rx="10" fill="none" stroke="var(--line)" stroke-dasharray="4 4"/>
-            <text class="svg-t" x="596" y="139" text-anchor="middle">Urgent?</text><text class="svg-t" x="596" y="154" text-anchor="middle">→ human</text>
-          </g>
-        </svg>
-        </div>
+        <div class="net-head"><h3>What happens when someone calls</h3><span class="chip">CALL FLOW</span></div>
+        <ol class="cflow">
+          <li class="cf-step"><span class="cf-n">1</span><div><strong>Someone calls your number</strong><span>Day or night, from any phone</span></div></li>
+          <li class="cf-step cf-ai"><span class="cf-n">2</span><div><strong>Wize AI answers on the first ring</strong><span>Recognises the caller and works out what they need</span></div><span class="cf-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></li>
+          <li class="cf-branch">
+            <div style="--c:var(--orbit)"><strong>Books it</strong><span>Straight into your calendar</span></div>
+            <div style="--c:var(--radio)"><strong>Transfers</strong><span>To a person by name or team</span></div>
+            <div style="--c:var(--fibre)"><strong>Takes a message</strong><span>Then follows up by SMS and email</span></div>
+          </li>
+          <li class="cf-urgent"><b>Urgent?</b> It goes straight to a human, with the details already captured.</li>
+          <li class="cf-step cf-end"><span class="cf-n">✓</span><div><strong>Summary and transcript delivered</strong><span>To your CRM, Microsoft Teams and inbox</span></div></li>
+        </ol>
       </div>
 
       <div class="call">
         <div class="call-head">
-          <div class="status"><span class="dot" id="callDot"></span><span id="callState">Sample call · plumbing business, 9:14 pm</span></div>
+          <div class="status"><span class="dot" id="callDot"></span><span id="callState">Sample call · plumber, 9:14 pm</span></div>
         </div>
         <div class="transcript" id="transcript" aria-live="polite"></div>
+        <p class="fine call-note">Example only. The AI is set up with your services, hours and rules.</p>
         <button class="btn solid" id="playCall" style="justify-self:start">▶ Play sample call</button>
       </div>
     </div>
@@ -810,7 +843,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 </section>
 
 <!-- INFRASTRUCTURE -->
-<section id="infrastructure" style="background:var(--sunk);padding-top:0">
+<section id="infrastructure" style="background:var(--sunk)">
   <div class="wrap">
     <div class="infra">
       <div style="display:grid;gap:18px;align-content:start;min-width:0">
@@ -827,30 +860,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <div class="infra-panels">
         <div class="ipanel">
           <span class="chip">COMPETITORS · RESELL A NETWORK</span>
-          <svg viewBox="0 0 360 150" role="img" aria-label="A reseller sits between you and the network owner and can't reach the line">
-            <g style="font:600 12px var(--f-body)">
-              <rect x="4" y="54" width="90" height="42" rx="10" fill="var(--sunk)" stroke="var(--line)"/><text x="49" y="80" text-anchor="middle" fill="var(--ink)">Your site</text>
-              <rect x="134" y="54" width="90" height="42" rx="10" fill="var(--sunk)" stroke="var(--line)"/><text x="179" y="80" text-anchor="middle" fill="var(--ink)">Retailer</text>
-              <rect x="264" y="54" width="92" height="42" rx="10" fill="var(--sunk)" stroke="var(--line)"/><text x="310" y="73" text-anchor="middle" fill="var(--ink)">Network</text><text x="310" y="88" text-anchor="middle" fill="var(--ink)">owner</text>
-            </g>
-            <path d="M94 75 H130" stroke="var(--muted)" stroke-width="2"/>
-            <path d="M224 75 H260" stroke="var(--down)" stroke-width="2" stroke-dasharray="4 5"/>
-            <g transform="translate(242 75)"><circle r="12" fill="var(--surface)" stroke="var(--down)" stroke-width="2"/><rect x="-5" y="-2" width="10" height="8" rx="1.5" fill="var(--down)"/><path d="M-3 -2 v-3 a3 3 0 0 1 6 0 v3" fill="none" stroke="var(--down)" stroke-width="1.8"/></g>
-            <text x="180" y="128" text-anchor="middle" class="svg-t">Lodge a ticket, then wait for the owner</text>
-          </svg>
+          <div class="ichain">
+            <span class="inode">Your site</span><span class="ilink"></span>
+            <span class="inode">Retailer</span><span class="ilink bad"><b role="img" aria-label="blocked"><svg width="12" height="12" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="6" rx="1.5" fill="var(--down)"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="var(--down)" stroke-width="1.6"/></svg></b></span>
+            <span class="inode">Network owner</span>
+          </div>
+          <p class="icap">Lodge a ticket, then wait for the owner's queue</p>
         </div>
         <div class="ipanel us">
           <span class="chip">WIZE · OWN FIBRE &amp; NBN INFRASTRUCTURE</span>
-          <svg viewBox="0 0 360 150" role="img" aria-label="Wize owns the infrastructure between you and the network, with direct access to fix faults">
-            <g style="font:600 12px var(--f-body)">
-              <rect x="4" y="54" width="90" height="42" rx="10" fill="var(--sunk)" stroke="var(--line)"/><text x="49" y="80" text-anchor="middle" fill="var(--ink)">Your site</text>
-              <rect x="134" y="44" width="222" height="62" rx="12" fill="color-mix(in srgb,var(--ok) 12%,var(--surface))" stroke="var(--ok)" stroke-width="2"/>
-              <text x="245" y="70" text-anchor="middle" fill="var(--ink)" style="font:700 14px var(--f-display)">Wize network &amp; engineers</text>
-              <text x="245" y="90" text-anchor="middle" class="svg-t">fibre · NBN · 5G · Starlink</text>
-            </g>
-            <path d="M94 75 H130" stroke="var(--fibre)" stroke-width="4"/>
-            <text x="180" y="128" text-anchor="middle" class="svg-t">Test, diagnose and repair directly</text>
-          </svg>
+          <div class="ichain">
+            <span class="inode">Your site</span><span class="ilink good"></span>
+            <span class="inode big"><strong>Wize network &amp; engineers</strong><em>fibre · NBN · 5G · Starlink</em></span>
+          </div>
+          <p class="icap">Test, diagnose and repair directly</p>
         </div>
       </div>
     </div>
@@ -918,7 +941,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         <div class="hm-core">Code Black Group</div>
         <div class="hm-grid"><div class="on"><b>Wize</b><span>Connectivity &amp; voice</span></div><div><b>Midnight IT</b><span>24/7 IT support</span></div><div><b>Strike Force</b><span>Cyber security</span></div><div><b>AI Dome</b><span>AI adoption &amp; control</span></div><div><b>3 Eyes Australia</b><span>Surveillance &amp; security</span></div><div><b>Rendr</b><span>Web &amp; digital</span></div></div>
       </div>
-      <div class="chart-wrap hub-wrap"><svg id="hub" viewBox="0 0 520 480" role="img" aria-label="Code Black Group at the centre, connected to its divisions: Wize, Midnight IT, Strike Force, AI Dome, 3 Eyes Australia and Rendr"></svg></div>
+      <div class="chart-wrap hub-wrap"><svg id="hub" viewBox="0 0 560 480" role="img" aria-label="Code Black Group at the centre, connected to its divisions: Wize, Midnight IT, Strike Force, AI Dome, 3 Eyes Australia and Rendr"></svg></div>
     </div>
   </div>
 </section>
@@ -1168,11 +1191,12 @@ const lines=[
  ['sys','','✓ Booked 7:30 am · ✓ SMS confirmation sent · ✓ Job card + transcript posted to Teams'],
 ];
 let callTimer=null;
-function resetCall(){ $('#transcript').innerHTML='<p class="fine">Press play to hear how the AI handles an after-hours call, books the job and briefs your team.</p>'; }
+const lineHTML=([c,who,t])=>`<div class="msg ${c}">${who?`<small>${who}</small>`:''}${t}</div>`;
+function resetCall(){ $('#transcript').innerHTML=lines.map(lineHTML).join('').replace(/class="msg /g,'style="animation:none" class="msg '); }
 resetCall();
 $('#playCall').addEventListener('click',()=>{
   clearTimeout(callTimer); const box=$('#transcript'); box.innerHTML=''; let i=0;
-  $('#callState').textContent='Live · after-hours call';
+  $('#callState').textContent='Live · after-hours call'; $('#playCall').textContent='▶ Playing…';
   const next=()=>{ if(i>=lines.length){$('#callState').textContent='Call ended · 1 min 12 s';$('#playCall').textContent='↻ Replay sample call';return;}
     const [c,who,t]=lines[i++]; box.insertAdjacentHTML('beforeend',`<div class="msg ${c}">${who?`<small>${who}</small>`:''}${t}</div>`);
     callTimer=setTimeout(next,reduce?150:(c==='sys'?600:1500)); };
@@ -1237,7 +1261,7 @@ videos.forEach((v,i)=>{
   b.addEventListener('click',()=>{load(i);play();});
   vlist.appendChild(b);
 });
-vlist.insertAdjacentHTML('beforeend','<p class="vnote">Animated explainers. Swap in rendered MP4s with voice-over before launch.</p>');
+
 function total(){return videos[vi].scenes.reduce((a,s)=>a+s.d,0);}
 function showScene(i){ si=i; const sc=videos[vi].scenes[i]; $('#stage').innerHTML=sc.s(); $('#caption').textContent=sc.c; }
 function load(i){
@@ -1282,13 +1306,13 @@ load(0);
 
 /* ---------- GROUP HUB ---------- */
 (function(){
-  const cx=260,cy=240,R=172;
+  const cx=280,cy=240,R=176;
   const divs=[['Wize','Connectivity & voice',true],['Midnight IT','24/7 IT support'],['Strike Force','Cyber security'],['AI Dome','AI adoption & control'],['3 Eyes Australia','Surveillance & security'],['Rendr','Web & digital']];
   let s='';
   divs.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/divs.length,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
     s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${d[2]?'var(--ok)':'var(--line)'}" stroke-width="${d[2]?3:1.5}"/>`;});
-  s+=`<circle cx="${cx}" cy="${cy}" r="70" fill="var(--navy)"/><text x="${cx}" y="${cy-4}" text-anchor="middle" style="font:800 17px var(--f-display);fill:#fff">Code Black</text><text x="${cx}" y="${cy+16}" text-anchor="middle" style="font:800 17px var(--f-display);fill:#fff">Group</text>`;
-  divs.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/divs.length,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a),w=150,h=58;
+  s+=`<circle cx="${cx}" cy="${cy}" r="74" fill="var(--bg)" stroke="var(--lime)" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="88" fill="none" stroke="rgba(215,242,5,.18)"/><text x="${cx}" y="${cy-4}" text-anchor="middle" style="font:800 17px var(--f-display);fill:#fff">Code Black</text><text x="${cx}" y="${cy+16}" text-anchor="middle" style="font:800 17px var(--f-display);fill:#fff">Group</text>`;
+  divs.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/divs.length,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a),w=176,h=60;
     s+=`<g><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="14" fill="${d[2]?'var(--navy)':'var(--surface)'}" stroke="${d[2]?'var(--lime)':'var(--line)'}" stroke-width="${d[2]?2.5:1}"/>
     <text x="${x}" y="${y-3}" text-anchor="middle" style="font:700 15px var(--f-display);fill:${d[2]?'var(--lime)':'var(--ink)'}">${d[0]}</text>
     <text x="${x}" y="${y+15}" text-anchor="middle" style="font:500 11px var(--f-mono);fill:${d[2]?'#c9d3f0':'var(--muted)'}">${d[1]}</text></g>`;});
