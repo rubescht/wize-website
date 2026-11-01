@@ -466,9 +466,37 @@ h2:has(.wz){line-height:1.22;padding-top:.28em}
 /* hero diagram */
 .edge-pulse{transform-box:fill-box;transform-origin:center;animation:edgePulse 2.4s ease-out infinite}
 @keyframes edgePulse{from{transform:scale(1);opacity:.9}to{transform:scale(2.2);opacity:0}}
-#netSvg text{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linejoin:round}
-#pills text{stroke:none}
 @media (max-width:720px){.readout span{font-size:10px;letter-spacing:.04em}}
+
+/* modern, frameless hero diagram */
+.net{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;gap:14px;position:relative;isolation:isolate}
+.net::before{content:"";position:absolute;inset:6% -8% 22% -8%;z-index:-1;background:radial-gradient(closest-side,rgba(134,160,255,.16),rgba(54,214,193,.06) 55%,transparent 75%);filter:blur(10px)}
+.net-head{padding-inline:4px}
+.net-hint{font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.nlab{font:500 11.5px var(--f-mono);fill:var(--muted)}
+.nlab.strong{font:700 14px var(--f-display);fill:var(--ink)}
+.nlab.lime{font:600 11.5px var(--f-mono);fill:var(--lime)}
+.nlab.dim{fill:#7f8fb8;font-size:10.5px;letter-spacing:.06em}
+.edge-spin{transform-box:fill-box;transform-origin:center;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cut-row{justify-content:center;gap:8px}
+.cut{border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);padding:8px 14px;backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+.cut:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07)}
+.cut[aria-pressed="true"]{background:rgba(255,107,129,.1);border-color:rgba(255,107,129,.6)}
+.readout{gap:0;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
+.readout div{background:none!important;border-radius:0;padding:2px 14px;border-left:1px solid rgba(255,255,255,.08);text-align:center}
+.readout div:first-child{border-left:0}
+.readout strong{font-size:20px;color:var(--ink)}
+@media (max-width:720px){.net-hint{display:none}.readout div{padding:2px 6px}}
+@media (prefers-reduced-motion:reduce){.edge-spin,.edge-pulse{animation:none}}
+
+.hero-grid{grid-template-columns:1fr 1.08fr}
+.cut-cap{text-align:center;font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em;margin-bottom:-4px}
+@media (max-width:920px){.hero-grid{grid-template-columns:1fr}}
+@media (max-width:600px){
+  .nlab{font-size:15px}.nlab.strong{font-size:17px}.nlab.lime{font-size:14px}
+  .nlab.dim{font-size:13px}#netSvg .nlab.sub,#netSvg .nodelab{display:none}
+}
 /* contact */
 .contact{background:radial-gradient(800px 400px at 0% 100%,rgba(215,242,5,.12),transparent 60%),var(--navy);color:#f3f6ff;--bg:#f3f6ff;--ink:var(--navy);border-top:1px solid rgba(215,242,5,.3)}
 .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -536,60 +564,74 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
     <div class="net" aria-label="Interactive failover demo">
       <div class="net-head">
         <div class="status" id="netStatus"><span class="dot"></span><span id="netStatusTxt">All paths live · load-balanced</span></div>
-        <span class="chip">LIVE DEMO · TRY IT</span>
+        
       </div>
-      <svg id="netSvg" viewBox="0 24 560 300" role="img" aria-label="Diagram: your site's Wize edge router sends traffic to the cloud over business fibre underground, 5G through a tower and Starlink through a satellite, all at once">
+      <svg id="netSvg" viewBox="0 18 600 300" role="img" aria-label="Diagram: your site's Wize edge router sends traffic to the cloud over business fibre underground, 5G through a tower and Starlink through a satellite, all at once">
         <defs>
-          <linearGradient id="earth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2a12" stop-opacity=".35"/><stop offset="1" stop-color="#3a2a12" stop-opacity="0"/></linearGradient>
-          <radialGradient id="glowL"><stop offset="0" stop-color="#d7f205" stop-opacity=".35"/><stop offset="1" stop-color="#d7f205" stop-opacity="0"/></radialGradient>
+          <filter id="lineGlow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+          <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <linearGradient id="horizon" x1="0" x2="1"><stop offset="0" stop-color="#9aabd6" stop-opacity="0"/><stop offset=".2" stop-color="#9aabd6" stop-opacity=".35"/><stop offset=".8" stop-color="#9aabd6" stop-opacity=".35"/><stop offset="1" stop-color="#9aabd6" stop-opacity="0"/></linearGradient>
+          <radialGradient id="earthGlow"><stop offset="0" stop-color="#f5b53d" stop-opacity=".10"/><stop offset="1" stop-color="#f5b53d" stop-opacity="0"/></radialGradient>
+          <radialGradient id="edgeHalo"><stop offset="0" stop-color="#d7f205" stop-opacity=".45"/><stop offset="1" stop-color="#d7f205" stop-opacity="0"/></radialGradient>
+          <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".09"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/></linearGradient>
         </defs>
-        <!-- ground -->
-        <rect x="0" y="266" width="560" height="58" fill="url(#earth)"/>
-        <line x1="0" y1="266" x2="560" y2="266" stroke="#5b4a2a" stroke-opacity=".6" stroke-dasharray="2 5"/>
-        <text x="548" y="312" text-anchor="end" style="font:600 9px var(--f-mono);letter-spacing:.14em;fill:#a08a5c;opacity:.8">UNDERGROUND</text>
-        <!-- satellite -->
-        <g transform="translate(306 58)">
-          <rect x="-10" y="-8" width="20" height="16" rx="3" fill="var(--orbit)"/>
-          <rect x="-38" y="-5" width="24" height="10" rx="1.5" fill="none" stroke="var(--orbit)" stroke-width="2"/>
-          <line x1="-31" y1="-5" x2="-31" y2="5" stroke="var(--orbit)" stroke-width="1"/><line x1="-23" y1="-5" x2="-23" y2="5" stroke="var(--orbit)" stroke-width="1"/>
-          <rect x="14" y="-5" width="24" height="10" rx="1.5" fill="none" stroke="var(--orbit)" stroke-width="2"/>
-          <line x1="22" y1="-5" x2="22" y2="5" stroke="var(--orbit)" stroke-width="1"/><line x1="30" y1="-5" x2="30" y2="5" stroke="var(--orbit)" stroke-width="1"/>
-          <text class="svg-t" y="-18" text-anchor="middle">Starlink satellite · ~550 km</text>
+        <!-- horizon: fibre runs below it -->
+        <ellipse cx="334" cy="258" rx="200" ry="44" fill="url(#earthGlow)"/>
+        <line x1="120" y1="236" x2="550" y2="236" stroke="url(#horizon)" stroke-dasharray="1 6" stroke-linecap="round" stroke-width="1.5"/>
+        <!-- glow under each path -->
+        <path id="gOrbit" d="M172 182 C 214 80 268 56 334 56 C 400 56 454 80 496 182" fill="none" stroke="var(--orbit)" stroke-width="9" opacity=".35" filter="url(#lineGlow)"/>
+        <path id="gRadio" d="M172 190 C 228 190 262 136 334 136 C 406 136 440 190 496 190" fill="none" stroke="var(--radio)" stroke-width="9" opacity=".35" filter="url(#lineGlow)"/>
+        <path id="gFibre" d="M172 198 C 214 292 454 292 496 198" fill="none" stroke="var(--fibre)" stroke-width="11" opacity=".35" filter="url(#lineGlow)"/>
+        <!-- crisp paths -->
+        <path id="pOrbit" d="M172 182 C 214 80 268 56 334 56 C 400 56 454 80 496 182" fill="none" stroke="var(--orbit)" stroke-width="2.5" stroke-linecap="round"/>
+        <path id="pRadio" d="M172 190 C 228 190 262 136 334 136 C 406 136 440 190 496 190" fill="none" stroke="var(--radio)" stroke-width="2.5" stroke-linecap="round"/>
+        <path id="pFibre" d="M172 198 C 214 292 454 292 496 198" fill="none" stroke="var(--fibre)" stroke-width="3.5" stroke-linecap="round"/>
+        <g id="packets" filter="url(#dotGlow)"></g>
+        <!-- satellite node -->
+        <g transform="translate(334 56)">
+          <circle r="19" fill="#081638" stroke="var(--orbit)" stroke-width="1.5"/>
+          <circle r="19" fill="var(--orbit)" opacity=".12"/>
+          <rect x="-4" y="-4" width="8" height="8" rx="1.5" fill="var(--orbit)" transform="rotate(45)"/>
+          <path d="M-13 -5 l6 6 M7 -1 l6 6 M-14 -1 l4 -4 l6 6 l-4 4z M14 1 l-4 4 l-6 -6 l4 -4z" stroke="var(--orbit)" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+          <text class="nlab nodelab" y="-28" text-anchor="middle">Starlink · low orbit</text>
         </g>
-        <!-- 5G tower, standing on the ground -->
-        <g stroke="var(--radio)" fill="none" stroke-width="2" stroke-linejoin="round">
-          <path d="M292 266 L306 160 L320 266 M296 236 L316 236 M299 210 L313 210 M302 186 L310 186 M296 236 L313 210 M316 236 L299 210"/>
-          <path d="M292 146 a20 20 0 0 1 0 -16 M320 146 a20 20 0 0 0 0 -16 M284 152 a30 30 0 0 1 0 -28 M328 152 a30 30 0 0 0 0 -28" stroke-width="1.6" opacity=".8"/>
+        <!-- 5G node -->
+        <g transform="translate(334 136)">
+          <circle r="17" fill="#081638" stroke="var(--radio)" stroke-width="1.5"/>
+          <circle r="17" fill="var(--radio)" opacity=".12"/>
+          <path d="M-5 9 L0 -5 L5 9 M-3 4 H3" stroke="var(--radio)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+          <circle cy="-6" r="2" fill="var(--radio)"/>
+          <path d="M-7 -10 a8 8 0 0 0 0 8 M7 -10 a8 8 0 0 1 0 8" stroke="var(--radio)" stroke-width="1.3" fill="none"/>
+          <text class="nlab nodelab" y="34" text-anchor="middle">5G network</text>
         </g>
-        <circle cx="306" cy="150" r="5" fill="var(--radio)"/>
-        <text class="svg-t" x="328" y="250">5G tower</text>
-        <!-- paths: router to cloud -->
-        <path id="pOrbit" d="M150 196 C 192 92 250 66 306 66 C 362 66 424 92 466 196" fill="none" stroke="var(--orbit)" stroke-width="3" stroke-linecap="round"/>
-        <path id="pRadio" d="M150 205 C 206 205 240 150 306 150 C 372 150 410 205 466 205" fill="none" stroke="var(--radio)" stroke-width="3" stroke-linecap="round"/>
-        <path id="pFibre" d="M150 214 C 186 318 430 318 466 214" fill="none" stroke="var(--fibre)" stroke-width="5" stroke-linecap="round"/>
-        <g id="packets"></g>
-        <!-- site + Wize edge router -->
-        <g transform="translate(54 205)">
-          <rect x="-28" y="-30" width="56" height="58" rx="8" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
-          <rect x="-18" y="-18" width="9" height="9" rx="1" fill="var(--ink)"/><rect x="-4.5" y="-18" width="9" height="9" rx="1" fill="var(--ink)"/><rect x="9" y="-18" width="9" height="9" rx="1" fill="var(--ink)"/>
-          <rect x="-6" y="6" width="12" height="22" rx="1" fill="var(--ink)"/>
-          <text class="svg-tb" y="48" text-anchor="middle">Your site</text>
+        <text class="nlab dim" x="334" y="300" text-anchor="middle">Business fibre · underground</text>
+        <!-- site tile -->
+        <g transform="translate(64 190)">
+          <rect x="-34" y="-34" width="68" height="68" rx="18" fill="url(#tile)" stroke="rgba(255,255,255,.16)"/>
+          <path d="M-13 15 V-9 l13 -8 l13 8 V15 Z" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="-4" y="4" width="8" height="11" rx="1" fill="var(--ink)"/>
+          <rect x="-8" y="-6" width="5" height="5" rx="1" fill="var(--ink)"/><rect x="3" y="-6" width="5" height="5" rx="1" fill="var(--ink)"/>
+          <text class="nlab strong" y="54" text-anchor="middle">Your site</text>
         </g>
-        <line x1="82" y1="205" x2="112" y2="205" stroke="var(--lime)" stroke-width="3"/>
-        <circle cx="130" cy="205" r="40" fill="url(#glowL)"/>
-        <circle cx="130" cy="205" r="18" fill="var(--bg)" stroke="var(--lime)" stroke-width="2.5"/>
-        <circle class="edge-pulse" cx="130" cy="205" r="18" fill="none" stroke="var(--lime)" stroke-width="1.5"/>
-        <path d="M122 205 h16 M130 197 v16" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/>
-        <text x="130" y="244" text-anchor="middle" style="font:600 11px var(--f-mono);fill:var(--lime)">Wize edge</text>
-        <!-- cloud -->
-        <g transform="translate(486 205)">
-          <path d="M-34 18 a18 18 0 0 1 2 -36 a23 23 0 0 1 44 -5 a16 16 0 0 1 21 25 a14 14 0 0 1 -9 16 z" fill="var(--sunk)" stroke="var(--ink)" stroke-width="2"/>
-          <text class="svg-tb" y="44" text-anchor="middle">Cloud &amp; calls</text>
-          <text class="svg-t" y="60" text-anchor="middle">M365 · POS · voice</text>
+        <line x1="98" y1="190" x2="128" y2="190" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Wize edge -->
+        <circle cx="150" cy="190" r="46" fill="url(#edgeHalo)"/>
+        <circle class="edge-spin" cx="150" cy="190" r="29" fill="none" stroke="var(--lime)" stroke-width="1.2" stroke-dasharray="3 7" opacity=".7"/>
+        <circle cx="150" cy="190" r="21" fill="#071233" stroke="var(--lime)" stroke-width="2.5"/>
+        <circle class="edge-pulse" cx="150" cy="190" r="21" fill="none" stroke="var(--lime)" stroke-width="1.5"/>
+        <path d="M150 181 v18 M141 190 h18" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/>
+        <text class="nlab lime" x="150" y="240" text-anchor="middle">Wize edge</text>
+        <!-- cloud tile -->
+        <g transform="translate(530 190)">
+          <rect x="-34" y="-34" width="68" height="68" rx="18" fill="url(#tile)" stroke="rgba(255,255,255,.16)"/>
+          <path d="M-14 9 a8 8 0 0 1 1 -16 a11 11 0 0 1 21 -2 a8 8 0 0 1 7 18 z" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <text class="nlab strong" y="54" text-anchor="middle">Cloud &amp; calls</text>
+          <text class="nlab dim sub" y="70" text-anchor="middle">M365 · POS · voice</text>
         </g>
         <g id="pills"></g>
         <g id="xmarks"></g>
       </svg>
+      <p class="cut-cap">Try it: cut a connection</p>
       <div class="cut-row" role="group" aria-label="Simulate an outage">
         <button class="cut" data-path="fibre" aria-pressed="false"><b style="background:var(--fibre)"></b>Cut fibre</button>
         <button class="cut" data-path="radio" aria-pressed="false"><b style="background:var(--radio)"></b>Drop 5G</button>
@@ -1082,6 +1124,7 @@ document.querySelectorAll('table.cmp2 tbody tr').forEach(tr=>{const td=tr.queryS
 
 /* ---------- HERO FAILOVER DEMO ---------- */
 const paths={fibre:$('#pFibre'),radio:$('#pRadio'),orbit:$('#pOrbit')};
+const glows={fibre:$('#gFibre'),radio:$('#gRadio'),orbit:$('#gOrbit')};
 const colors={fibre:'var(--fibre)',radio:'var(--radio)',orbit:'var(--orbit)'};
 const up={fibre:true,radio:true,orbit:true};
 const weight={fibre:5,radio:3,orbit:2};
@@ -1117,20 +1160,22 @@ function refresh(changed){
     paths[k].style.opacity=up[k]?1:.25;
     paths[k].setAttribute('stroke-dasharray',up[k]?'':'4 8');
     paths[k].setAttribute('stroke',up[k]?colors[k]:'var(--down)');
+    glows[k].style.opacity=up[k]?'.35':'0';
   });
   xg.innerHTML='';
   Object.keys(up).filter(k=>!up[k]).forEach(k=>{
-    const pt=paths[k].getPointAtLength(paths[k].getTotalLength()*({fibre:.3,radio:.36,orbit:.36})[k]);
+    const pt=paths[k].getPointAtLength(paths[k].getTotalLength()*({fibre:.3,radio:.3,orbit:.32})[k]);
     xg.insertAdjacentHTML('beforeend',`<g transform="translate(${pt.x} ${pt.y})"><circle r="11" fill="var(--surface)" stroke="var(--down)" stroke-width="2"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="var(--down)" stroke-width="2.4"/></g>`);
   });
-  const names={fibre:'Fibre',radio:'5G',orbit:'Starlink'}, at={fibre:.66,radio:.78,orbit:.2};
+  const names={fibre:'Fibre',radio:'5G',orbit:'Starlink'}, at={fibre:.7,radio:.76,orbit:.78};
   const tot=Object.keys(up).filter(k=>up[k]).reduce((a,k)=>a+weight[k],0)||1;
   const pg=document.getElementById('pills'); pg.innerHTML='';
   Object.keys(paths).forEach(k=>{
     const pt=paths[k].getPointAtLength(paths[k].getTotalLength()*at[k]);
     const label=up[k]?`${names[k]} · ${Math.round(100*weight[k]/tot)}%`:`${names[k]} · down`;
-    const w=label.length*6.6+22, c=up[k]?colors[k]:'var(--down)';
-    pg.insertAdjacentHTML('beforeend',`<g transform="translate(${pt.x} ${pt.y})"><rect x="${-w/2}" y="-11" width="${w}" height="22" rx="11" fill="var(--bg2)" stroke="${c}" stroke-width="1.5"/><text y="4" text-anchor="middle" style="font:700 11px var(--f-mono);fill:${c}">${label}</text></g>`);
+    const sc=(document.getElementById('netSvg').clientWidth||600)<520?1.45:1;
+    const w=(label.length*6.6+22)*sc, c=up[k]?colors[k]:'var(--down)';
+    pg.insertAdjacentHTML('beforeend',`<g transform="translate(${pt.x} ${pt.y})"><rect x="${-w/2}" y="${-12*sc}" width="${w}" height="${24*sc}" rx="${12*sc}" fill="rgba(5,13,38,.88)" stroke="${c}" stroke-opacity=".7" stroke-width="1"/><text y="${4*sc}" text-anchor="middle" style="font:700 ${11*sc}px var(--f-mono);fill:${c}">${label}</text></g>`);
   });
   $('#roPaths').textContent=live+' / 3';
   const st=$('#netStatus'), txt=$('#netStatusTxt');
@@ -1148,6 +1193,7 @@ $$('.cut').forEach(b=>b.addEventListener('click',()=>{
   refresh(!up[k]);
 }));
 refresh(false);
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>refresh(false),150);});
 if(!reduce) requestAnimationFrame(loop);
 
 /* ---------- COMPARISON CHART ---------- */
