@@ -494,7 +494,7 @@ h2:has(.wz){line-height:1.22;padding-top:.28em}
 .cut-cap{text-align:center;font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em;margin-bottom:-4px}
 @media (max-width:920px){.hero-grid{grid-template-columns:1fr}}
 @media (max-width:600px){
-  .nlab{font-size:15px}.nlab.strong{font-size:17px}.nlab.lime{font-size:14px}
+  .nlab{font-size:15px}.nlab.strong{font-size:17px}.nlab.lime{font-size:14px;transform:translate(10px,20px)}
   .nlab.dim{font-size:13px}#netSvg .nlab.sub,#netSvg .nodelab{display:none}
 }
 /* contact */
@@ -566,7 +566,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         <div class="status" id="netStatus"><span class="dot"></span><span id="netStatusTxt">All paths live · load-balanced</span></div>
         
       </div>
-      <svg id="netSvg" viewBox="0 18 600 300" role="img" aria-label="Diagram: your site's Wize edge router sends traffic to the cloud over business fibre underground, 5G through a tower and Starlink through a satellite, all at once">
+      <svg id="netSvg" viewBox="0 18 600 300" role="img" aria-label="Diagram: your site's Wize Firewall sends traffic to the cloud over business fibre underground, 5G through a tower and Starlink through a satellite, all at once">
         <defs>
           <filter id="lineGlow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
           <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -614,13 +614,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
           <text class="nlab strong" y="54" text-anchor="middle">Your site</text>
         </g>
         <line x1="98" y1="190" x2="128" y2="190" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Wize edge -->
+        <!-- Wize Firewall -->
         <circle cx="150" cy="190" r="46" fill="url(#edgeHalo)"/>
         <circle class="edge-spin" cx="150" cy="190" r="29" fill="none" stroke="var(--lime)" stroke-width="1.2" stroke-dasharray="3 7" opacity=".7"/>
         <circle cx="150" cy="190" r="21" fill="#071233" stroke="var(--lime)" stroke-width="2.5"/>
         <circle class="edge-pulse" cx="150" cy="190" r="21" fill="none" stroke="var(--lime)" stroke-width="1.5"/>
         <path d="M150 181 v18 M141 190 h18" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/>
-        <text class="nlab lime" x="150" y="240" text-anchor="middle">Wize edge</text>
+        <text class="nlab lime" x="150" y="240" text-anchor="middle">Wize Firewall</text>
         <!-- cloud tile -->
         <g transform="translate(530 190)">
           <rect x="-34" y="-34" width="68" height="68" rx="18" fill="url(#tile)" stroke="rgba(255,255,255,.16)"/>
@@ -1307,9 +1307,9 @@ const videos=[
    {d:5,c:'Wize. One network, every path. Book your free site survey on 1300 737 562.',
     s:()=>S(`<rect width="640" height="360" fill="#0a1a46"/><image class="pop" href="${LOGO}" x="180" y="40" width="280" height="163"/>`+mono(320,262,'1300 737 562','#d7f205'))},
  ]},
- {title:'How failover works',sub:'Inside the Wize edge',scenes:[
-   {d:5,c:'Every Wize site has an edge router that watches each connection many times a second.',
-    s:()=>S(`<g class="pop" transform="translate(320 180)"><rect x="-90" y="-36" width="180" height="72" rx="14" fill="#0f1729" stroke="${C.w}" stroke-width="2"/><text y="-4" text-anchor="middle" font-family="Bricolage Grotesque, system-ui" font-weight="800" font-size="20" fill="${C.w}">Wize edge</text><circle class="blink" cx="-60" cy="18" r="5" fill="${C.k}"/><circle class="blink" cx="-44" cy="18" r="5" fill="${C.k}" style="animation-delay:.3s"/><circle class="blink" cx="-28" cy="18" r="5" fill="${C.k}" style="animation-delay:.6s"/></g>`+line('M410 160 H560',C.f,4)+line('M410 180 H560',C.r,4)+line('M410 200 H560',C.o,4)+mono(320,280,'latency · jitter · packet loss'))},
+ {title:'How failover works',sub:'Inside the Wize Firewall',scenes:[
+   {d:5,c:'Every Wize site has a Wize Firewall that watches each connection many times a second.',
+    s:()=>S(`<g class="pop" transform="translate(320 180)"><rect x="-90" y="-36" width="180" height="72" rx="14" fill="#0f1729" stroke="${C.w}" stroke-width="2"/><text y="-4" text-anchor="middle" font-family="Bricolage Grotesque, system-ui" font-weight="800" font-size="20" fill="${C.w}">Wize Firewall</text><circle class="blink" cx="-60" cy="18" r="5" fill="${C.k}"/><circle class="blink" cx="-44" cy="18" r="5" fill="${C.k}" style="animation-delay:.3s"/><circle class="blink" cx="-28" cy="18" r="5" fill="${C.k}" style="animation-delay:.6s"/></g>`+line('M410 160 H560',C.f,4)+line('M410 180 H560',C.r,4)+line('M410 200 H560',C.o,4)+mono(320,280,'latency · jitter · packet loss'))},
    {d:5,c:'It measures latency, jitter and packet loss, and steers each app onto the healthiest path.',
     s:()=>S(`<g class="rise"><rect x="90" y="90" width="460" height="56" rx="12" fill="#0f1729"/><text x="110" y="124" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.v}">Voice calls</text><text x="530" y="124" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.f}">→ fibre · 4 ms</text></g><g class="rise d1"><rect x="90" y="156" width="460" height="56" rx="12" fill="#0f1729"/><text x="110" y="190" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.w}">Microsoft 365</text><text x="530" y="190" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.f}">→ fibre · 5 ms</text></g><g class="rise d2"><rect x="90" y="222" width="460" height="56" rx="12" fill="#0f1729"/><text x="110" y="256" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.w}">Backups &amp; updates</text><text x="530" y="256" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="16" fill="${C.o}">→ Starlink</text></g>`)},
    {d:5,c:'When a backhoe cuts the fibre, voice moves to 5G before the caller hears a thing.',
