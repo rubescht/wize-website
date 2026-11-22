@@ -20,3 +20,7 @@ The endpoint receives `?address=...` and must return JSON:
 
 Back it with your NBN wholesale / aggregator service-qualification (SQ) API, called
 server-side so API keys never reach the browser.
+
+## Security
+Every page carries a Content Security Policy, referrer policy and anti-framing guard (`assets/guard.js`).
+The policy pins each inline script by hash, so **after editing any inline `<script>` run `python3 tools/csp.py`**.
