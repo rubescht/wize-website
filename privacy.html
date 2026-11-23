@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- security:start -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="assets/guard.js"></script>
+<!-- security:end -->
+<title>Privacy Policy | Wize Solutions</title>
+<meta name="description" content="How Wize Solutions and Code Black Group collect, use, store and protect personal information under the Privacy Act 1988 (Cth) and the Australian Privacy Principles.">
+
+<style>
+:root{--bg:#050d26;--panel:#0d1f50;--ink:#eef2ff;--muted:#9aabd6;--line:#1f3778;--accent:#B4D334}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--muted);font:400 16px/1.75 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.top{border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);z-index:5}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px}
+.top b{color:var(--ink);font-size:15px;letter-spacing:.02em}
+.top a{color:var(--ink);text-decoration:none;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;white-space:nowrap}
+.top a:hover{border-color:var(--accent)}
+.hero{padding:clamp(48px,8vw,96px) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--line)}
+.kick{color:var(--accent);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+h1{margin:10px 0 0;color:var(--ink);font-size:clamp(36px,5vw,60px);line-height:1.08;letter-spacing:-.02em}
+.meta{margin:14px 0 0;font-size:14.5px}
+.grid{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;padding-block:clamp(40px,6vw,80px)}
+.toc{position:sticky;top:90px;display:flex;flex-direction:column;font-size:13.5px}
+.toc span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;opacity:.75}
+.toc a{color:var(--muted);text-decoration:none;padding:5px 0 5px 12px;border-left:1px solid var(--line)}
+.toc a:hover{color:var(--ink);border-left-color:var(--accent)}
+article{max-width:74ch}
+article p{margin:0 0 14px}
+.lead-note{padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;background:var(--panel);color:var(--ink);font-size:15px}
+.lg-intro{font-size:18px;color:var(--ink)}
+h2{display:flex;gap:14px;align-items:baseline;margin:48px 0 14px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink);font-size:clamp(20px,1.8vw,24px);line-height:1.3;scroll-margin-top:90px}
+h2 span{color:var(--accent);font-size:13px;font-weight:700;min-width:2ch}
+h3{margin:22px 0 6px;color:var(--ink);font-size:16px}
+ul{margin:0 0 16px;padding-left:20px} li{margin:4px 0} li::marker{color:var(--accent)}
+article a{color:var(--accent);text-underline-offset:3px}
+.lg-divs{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}
+.lg-divs li{margin:0;padding:5px 12px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--ink)}
+.lg-contact{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.lg-contact p{margin:0} .lg-contact b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding-block:28px 36px;font-size:13.5px}
+footer .aoc b{display:block;color:var(--accent);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+footer .aoc p{margin:0 0 20px;max-width:96ch;line-height:1.65}
+footer .bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:18px;border-top:1px solid var(--line)}
+footer a{color:var(--muted)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.toc{display:none}.lg-contact{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><b>Wize Solutions</b><a href="./">&larr; Back to Wize Solutions</a></div></header>
+<main>
+<section class="hero"><div class="wrap"><span class="kick">Legal &middot; Privacy</span><h1>Privacy Policy</h1><p class="meta">Last updated 24 November 2026</p></div></section>
+<div class="wrap grid">
+<nav class="toc" aria-label="On this page"><span>On this page</span><a href="#p1">Information we collect</a><a href="#p2">How we collect information</a><a href="#p3">How we use your information</a><a href="#p4">SOS scam help (Golden Shield)</a><a href="#p5">Real-time updates and subscriptions</a><a href="#p6">Disclosure of information</a><a href="#p7">International data transfers</a><a href="#p8">Cookies and analytics</a><a href="#p9">Security measures</a><a href="#p10">Data retention</a><a href="#p11">Your rights</a><a href="#p12">Third-party sites</a><a href="#p13">Changes to this policy</a><a href="#p14">Contact us</a></nav>
+<article>
+<p class="lead-note">Wize Solutions is a division of <b>Code Black Group Global Pty Ltd (ABN 62 315 213 466)</b>. Personal information collected through this website is handled under the Code Black Group Privacy Policy below.</p>
+<p class="lg-intro">Code Black Group Global Pty Ltd (ABN 62 315 213 466) (&ldquo;Code Black Group&rdquo;, &ldquo;CBG&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) is committed to protecting your privacy and handling personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs).</p>
+<p>This policy applies to the Code Black Group websites and to the following Code Black Group divisions:</p>
+<ul class="lg-divs"><li>Midnight IT</li><li>Rend&rsquo;r</li><li>3 Eyes Australia</li><li>Wize Solutions</li><li>Strikeforce Cyber</li><li>AI Dome</li></ul>
+<p>By using our websites, submitting an enquiry or subscribing to updates, you agree to this Privacy Policy.</p>
+
+<h2 id="p1"><span>1</span>Information we collect</h2>
+<p>We collect information when you:</p>
+<ul><li>Visit our websites</li><li>Submit a contact form, enquiry or discovery questionnaire</li><li>Use our SOS scam help (Golden Shield) or request a call back</li><li>Subscribe to updates</li><li>Interact with us by phone, email or social media</li><li>Engage with us as a client, partner or supplier</li></ul>
+<h3>1.1 Personal information</h3>
+<ul><li>Name</li><li>Company or organisation</li><li>Email address</li><li>Phone number</li><li>Job title</li><li>Service interests</li><li>Project details</li><li>Subscription preferences</li><li>IP address and browser metadata</li></ul>
+<h3>1.2 Optional information</h3>
+<p>Depending on your enquiry, we may also collect technical environment information, infrastructure details, physical site type, access or integration requirements, and priority or urgency. We only request additional information when required for service delivery.</p>
+
+<h2 id="p2"><span>2</span>How we collect information</h2>
+<h3>2.1 Direct interactions</h3>
+<p>Information you provide through contact forms, calls and emails, meetings and subscription forms.</p>
+<h3>2.2 Automated technologies</h3>
+<p>Information collected through cookies and similar browser storage, analytics tools, server logs and security monitoring systems.</p>
+<h3>2.3 Third-party sources</h3>
+<p>We may receive information from referral partners, public business directories and public professional profiles. We do not purchase data lists.</p>
+
+<h2 id="p3"><span>3</span>How we use your information</h2>
+<h3>3.1 Provide services</h3>
+<ul><li>Respond to enquiries</li><li>Match your enquiry with the correct CBG division</li><li>Prepare proposals and service plans</li><li>Deliver IT, digital, cyber security, surveillance, connectivity and A.I. services</li></ul>
+<h3>3.2 Improve customer experience</h3>
+<p>To personalise communication and improve our websites and service processes.</p>
+<h3>3.3 Communication</h3>
+<p>To respond to your enquiry, provide service updates and share important operational information.</p>
+<h3>3.4 Marketing communications (optional)</h3>
+<p>If you opt in, we may send news and insights, &ldquo;Latest from the Group&rdquo; updates, case studies and announcements, and security or technology alerts. You may unsubscribe at any time.</p>
+<h3>3.5 Security and compliance</h3>
+<p>To detect threats, prevent fraud and abuse of our websites (including automated or AI-driven attacks), and meet legal obligations.</p>
+
+<h2 id="p4"><span>4</span>SOS scam help (Golden Shield)</h2>
+<p>Our SOS scam help lets you describe what happened and receive general next steps from an A.I. assistant, and request an urgent call back from our team.</p>
+<ul><li>Messages you type are sent to an A.I. service provider to generate a reply. Before they are sent, we automatically remove anything that looks like a card, bank account or identity number.</li><li>Please do not enter card numbers, passwords, one-time codes or other sensitive details.</li><li>If you request a call back, we collect your name, phone number, preferred time and any short description you choose to give, and share it with our team so we can call you.</li><li>To protect the service from automated abuse, we use a short browser check and limit how often it can be used from one connection.</li><li>The assistant provides general guidance only. It is not legal or financial advice. In an emergency, call 000.</li></ul>
+
+<h2 id="p5"><span>5</span>Real-time updates and subscriptions</h2>
+<p>If you subscribe to real-time updates, we may send technology news, cyber security alerts, industry trends and service-related updates. You can unsubscribe at any time.</p>
+
+<h2 id="p6"><span>6</span>Disclosure of information</h2>
+<p>We do not sell personal information. We may disclose information to:</p>
+<h3>6.1 Internal CBG divisions</h3>
+<p>Only when necessary to deliver services.</p>
+<h3>6.2 Trusted service providers</h3>
+<p>Such as website and cloud hosting, email delivery services, CRM systems, analytics tools, security and monitoring systems, and A.I. tools. These providers are required to protect personal information.</p>
+<h3>6.3 Legal obligations</h3>
+<p>We may disclose information if required or authorised by law.</p>
+
+<h2 id="p7"><span>7</span>International data transfers</h2>
+<p>Some of our service providers store or process data outside Australia, including in Singapore and the United States (for example, website hosting, email delivery and A.I. services). We take reasonable steps to ensure these providers use appropriate safeguards and handle personal information consistently with Australian Privacy Principle 8.</p>
+
+<h2 id="p8"><span>8</span>Cookies and analytics</h2>
+<p>We may use essential cookies, analytics cookies, security cookies, and marketing cookies (opt-in only). Our websites also use your browser&rsquo;s storage for small conveniences, such as remembering that you have already seen the opening animation. You can manage cookies and site data through your browser settings.</p>
+
+<h2 id="p9"><span>9</span>Security measures</h2>
+<p>We use multiple security protections, including encryption, access controls, network and infrastructure monitoring, threat detection, and regular updates and security reviews. Every solution we deliver is security-vetted by Strikeforce Cyber. While no system is fully secure, we take reasonable steps to safeguard information.</p>
+
+<h2 id="p10"><span>10</span>Data retention</h2>
+<p>We retain information only as long as required to provide services, meet legal and compliance obligations, resolve disputes and maintain business records. You may request deletion of your information at any time.</p>
+
+<h2 id="p11"><span>11</span>Your rights</h2>
+<p>You may request access to your personal information, correction of inaccurate information, deletion of information, withdrawal of marketing consent, and details of how your information has been used.</p>
+<p>If you are not satisfied with how we handle your request or complaint, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">oaic.gov.au</a>.</p>
+
+<h2 id="p12"><span>12</span>Third-party sites</h2>
+<p>Our websites may link to external sites, including government resources. We are not responsible for their privacy practices.</p>
+
+<h2 id="p13"><span>13</span>Changes to this policy</h2>
+<p>We may update this Privacy Policy from time to time. The most recent version will always be available on this page.</p>
+
+<h2 id="p14"><span>14</span>Contact us</h2>
+<div class="lg-contact">
+  <p><b>Code Black Group Global Pty Ltd</b><br>ABN 62 315 213 466<br>Attention: Privacy Officer</p>
+  <p>Email: <a href="mailto:privacy@codeblackgroup.com.au">privacy@codeblackgroup.com.au</a><br>Phone: <a href="tel:1300737562">1300 737 562</a><br>Website: <a href="https://codeblackgroup.com.au">codeblackgroup.com.au</a></p>
+</div>
+
+</article>
+</div>
+</main>
+<footer><div class="wrap">
+<div class="aoc"><b>Acknowledgement of Country</b><p>Code Black Group acknowledges the Traditional Custodians of the lands on which we live and work throughout Australia, and their continuing connection to land, waters and community. We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres Strait Islander peoples.</p></div>
+<div class="bar"><span>&copy; 2026 Code Black Group Global Pty Ltd (ABN 62 315 213 466) </span><a href="./">Back to Wize Solutions</a></div>
+</div></footer>
+</body>
+</html>
