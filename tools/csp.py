@@ -5,7 +5,7 @@ Run after editing any inline <script>:  python3 tools/csp.py"""
 import re, hashlib, base64, glob, os
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOTS = ["."]          # folders that are published as the website
-CONNECT = []      # extra hosts pages may send data to
+CONNECT = ["https://golden-shield.onrender.com"]      # extra hosts pages may send data to
 GUARD = "/* Anti-clickjacking: refuse to render inside another site's frame. */\n(function(){ if(window.top!==window.self){ try{ window.top.location.replace(window.self.location.href); }catch(e){ document.documentElement.style.visibility='hidden'; } } })();\n"
 START, END = "<!-- security:start -->", "<!-- security:end -->"
 for root in ROOTS:
