@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <!-- security:start -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-OtvtD27j4sGvr8uqBoiZr8A+oQMGTybpUXRuDLUyrws='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Ec5SshrX+6hYnkeu3Nb4U71Llps/Yawx67xyTwux60o='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="assets/guard.js"></script>
 <!-- security:end -->
@@ -1142,7 +1142,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       </div>
       <div class="hub-mobile">
         <div class="hm-core">Code Black Group</div>
-        <div class="hm-grid"><div class="on"><b>Wize</b><span>Connectivity &amp; voice</span></div><div><b>Midnight IT</b><span>24/7 IT support</span></div><div><b>Strike Force</b><span>Cyber security</span></div><div><b>AI Dome</b><span>AI adoption &amp; control</span></div><div><b>3 Eyes Australia</b><span>Surveillance &amp; security</span></div><div><b>Rendr</b><span>Web &amp; digital</span></div></div>
+        <div class="hm-grid"><div class="on"><b>Wize</b><span>Connectivity &amp; voice</span></div><div><b>Midnight IT</b><span>24/7 IT support</span></div><div><b>Strike Force</b><span>Cyber security</span></div><div><b>AI Dome</b><span>AI adoption &amp; control</span></div><div><b>3 Eyes Australia</b><span>Technology &amp; R&amp;D</span></div><div><b>Rendr</b><span>Web &amp; digital</span></div></div>
       </div>
       <div class="chart-wrap hub-wrap"><svg id="hub" viewBox="0 0 560 480" role="img" aria-label="Code Black Group at the centre, connected to its divisions: Wize, Midnight IT, Strike Force, AI Dome, 3 Eyes Australia and Rendr"></svg></div>
     </div>
@@ -1524,7 +1524,7 @@ load(0);
 /* ---------- GROUP HUB ---------- */
 (function(){
   const cx=280,cy=240,R=176;
-  const divs=[['Wize','Connectivity & voice',true],['Midnight IT','24/7 IT support'],['Strike Force','Cyber security'],['AI Dome','AI adoption & control'],['3 Eyes Australia','Surveillance & security'],['Rendr','Web & digital']];
+  const divs=[['Wize','Connectivity & voice',true],['Midnight IT','24/7 IT support'],['Strike Force','Cyber security'],['AI Dome','AI adoption & control'],['3 Eyes Australia','Technology & R&D'],['Rendr','Web & digital']];
   let s='';
   divs.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/divs.length,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
     s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${d[2]?'var(--ok)':'var(--line)'}" stroke-width="${d[2]?3:1.5}"/>`;});
